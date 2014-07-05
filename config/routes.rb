@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'composer/show'
+
+  get 'edition/show'
+
+  get 'work/show'
+
   get 'main/welcome'
 
   # The priority is based upon order of creation: first created -> highest priority.
