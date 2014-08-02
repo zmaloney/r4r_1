@@ -1,2 +1,11 @@
-<h1>Composer#show</h1>
-<p>Find me in app/views/composer/show.html.erb</p>
+<h1><%= "#{@composer.first_name} #{@composer.last_name}" %></h1>
+
+<p>Works by this composer</p>
+	<% @composer.works.each do |work| %>
+	<p>
+		<%= link_to work.title || "(no description)", 
+			:controller 	=> "work",
+			:action			=> "show",
+			:id				=> work.id %>
+	</p>
+	<% end %>

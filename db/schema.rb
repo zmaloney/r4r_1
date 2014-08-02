@@ -14,18 +14,21 @@
 ActiveRecord::Schema.define(version: 20140630222549) do
 
   create_table "composers", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "first_name", limit: 25
+    t.string "last_name",  limit: 25
   end
 
   create_table "editions", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer "work_id",     limit: 11, null: false
+    t.string  "description", limit: 30
+    t.string  "publisher",   limit: 60
+    t.integer "year",        limit: 4
+    t.float   "price",       limit: 20
   end
 
   create_table "works", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer "composer_id", limit: 11
+    t.string  "title",       limit: 100
   end
 
 end

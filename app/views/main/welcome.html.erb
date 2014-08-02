@@ -1,2 +1,26 @@
-<h1>Main#welcome</h1>
-<p>Find me in app/views/main/welcome.html.erb</p>
+<h1>Welcome</h1>
+<p>This is the output of controller MainController, method "welcome", as routed in <i>get '' => "main#welcome"</i>.</p>
+<p>Default view constructor says to find me in app/views/main/welcome.html.erb</p>
+Hey, here's how many composers we have : 
+<%= @composers_count %>
+<br /> 
+<br />
+And here are their names, if any : 
+
+<% @composers.each do |comp| %>
+	<br><%= link_to "#{comp.first_name} #{comp.last_name}", 
+	:controller 	=> "composer", 
+	:action 		=> "show", 
+	:id				=> comp.id %>
+<% end %>
+
+<p>Did we get any tmp params?</p>
+<p>Since no POST points to this page, we should only get items from the querystring.</p>
+@tmp_count = <%= @tmp_count %>
+<p>Well, that should do it.</p>
+
+<p>What did we get for the ID parameter? It should be the third element in the canonical Rails URL.</p>
+@tmp_id = <%= @tmp_id %>
+
+<p>Can we also get the ID parameter just by using the ||= syntax?</p>
+@tmp_id2 = <%= @tmp_id2 %>

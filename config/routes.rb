@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'function_test/index'
+
   get 'composer/show'
 
   get 'edition/show'
@@ -6,6 +8,16 @@ Rails.application.routes.draw do
   get 'work/show'
 
   get 'main/welcome'
+  
+  #OK so let's set up a regular route : 
+  # map the Welcome controller, action "show" to the root request
+  get '' => "main#welcome"
+  # this route allows http://(server)/main/1 to map to Main controller, action "welcome", with an ID. 
+  get '/main/:id', to: 'main#welcome'  
+  
+  #map the FunctionTest controller, action "index"       
+  get '/functiontest', to: 'function_test#index'
+  get '/functiontest/index', to: 'function_test#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
