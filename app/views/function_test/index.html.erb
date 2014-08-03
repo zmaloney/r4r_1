@@ -1,25 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-   "http://www.w3.org/TR/html4/strict.dtd">
 
-<!DOCTYPE html>
-<html>
-<head>
-  <title>FunctionTest Index</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
   <script>
       $(function() {
           $( "#datepicker" ).datepicker();
       });
-  </script>
-</head>
-<body>
-
+  </script>           
+<p>A datepicker should show up directly under this line: </p>
 <p>Date: <input type="text" id="datepicker"></p>
 <p>Here is some text just before the yield reference.</p>
-<%= yield %>                                                
-<p>Here is some text just after the yield reference.</p>
-                                                         
-</body>
-</html>
+                                             
+<p>Here is some text just after the yield reference.</p>     
+<%= request.host_with_port()%>  
+<p>Here is some text just after the javascript include (with src).</p>                                               

@@ -9,7 +9,10 @@
 //
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
-//
+//    
+/* per http://stackoverflow.com/questions/8558472/javascript-included-twice-in-a-rails-3-1-asset-based-app , */    
+/* leave the following line empty, to apparently avoid duplication :  */    
+
 //= require jquery      
 //= require jquery-ui
 //= require jquery_ujs   
