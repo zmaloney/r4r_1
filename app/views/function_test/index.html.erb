@@ -7,7 +7,19 @@
 <p>A datepicker should show up directly under this line: </p>
 <p>Date: <input type="text" id="datepicker"></p>
 <p>Here is some text just before the yield reference.</p>
-                                             
+   <% yield %>                                          
 <p>Here is some text just after the yield reference.</p>     
-<%= request.host_with_port()%>  
+<%= request.host_with_port()%>    
+<fieldset id="javascript_test">  
+	<legend>Javascript tests</legend>  
+	<p>
+		Test output of file /public/javascripts/writefoo.js : <br/>
+		<%= javascript_include_tag "writefoo" %>
+    </p>    
+	<hr/>
+	<p>     
+		Test output of file /public/javascripts/greeting.js : <br/>  
+		<%= javascript_include_tag "greeting" %>
+	</p>  
+</fieldset>
 <p>Here is some text just after the javascript include (with src).</p>                                               

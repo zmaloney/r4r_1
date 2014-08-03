@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   # this route allows http://(server)/main/1 to map to Main controller, action "welcome", with an ID. 
   get '/main/:id', to: 'main#welcome'  
   
-  #map the FunctionTest controller, action "index"       
+  #map the FunctionTest controller action "index" both to its normal path and to a function-less path. 
+  get '/functiontest', to: 'function_test#index'       
   get '/functiontest/index', to: 'function_test#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
