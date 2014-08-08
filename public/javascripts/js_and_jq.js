@@ -18,18 +18,14 @@ function Hotel(name, rooms, booked) {
 	this.checkAvailability = function() { return this.rooms - this.booked; };   
 	this.phonesToText = function() { 
 		var sHotelPhones = ""; 
-		this.phones.forEach(function(phone) { 
-			sHotelPhones += (sHotelPhones.length > 0 ? ", " : "") + phone;  
+		this.phones.forEach(function(phone, index, array) { //we don't use index or array, but note that it gets passed. 
+			sHotelPhones += (sHotelPhones.length > 0 ? ", " : "") + phone + " " + foo;  
 			});    
 		return sHotelPhones; 
 	};    
 	this.hotelInfo = function() {   
 		var output = "Our hotel is called the " + this.name + ". It currently has " + this.checkAvailability() + " free rooms. Does it have a pool? " + (this.pool ? "Yes!" : "No."); 
 		var phonenumbers = this.phonesToText(); 
-	    /* for (x in this.phones) {   
-			phonenumbers += (phonenumbers.length > 0 ? ", " : "") + this.phones[x]; 
-			}    
-	 	*/ 
 		output += (phonenumbers.length > 0 ? " Phone numbers are : " + phonenumbers : ""); 
 		return output;  
 	}; 
