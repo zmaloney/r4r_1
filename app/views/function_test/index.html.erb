@@ -5,23 +5,19 @@
       });
   </script>           
 <p>A datepicker should show up directly under this line, as the input id is "datepicker": </p>
-<p>Date: <input type="text" id="datepicker"></p>
-<p>Here is some text just before the yield reference.</p>
-   <% yield %>                                          
-<p>Here is some text just after the yield reference.</p>       
-<p>I have to say, I'm just not certain that using yield is necessary at all on this page.</p>    
-<%= request.host_with_port()%>    
+<p>Date: <input type="text" id="datepicker"></p>  
+<p>Here is the host with port : <%= request.host_with_port()%></p>
 <fieldset id="javascript_test">  
-	<legend>Javascript tests</legend>  
-	<p>
-		Here is an element with id 'cost'. It has no value in markup, but js_and_jq method "setcost" sets its value : 
-	</p>                
-	<input id="cost" type="text" />     
+	<legend>Javascript tests</legend>    
 	<hr/>  
 	<div id="textholder"> 
 		Here is a div with id 'textholder'. We will update it ... <br/>
 	</div>
-	<hr/>
+	<hr/> 
+	<div id="builtins">
+		Here is a div with id 'builtins'. We will update it as well. <br/>
+	</div> 
+	<hr/>   
 	<p>     
 		Test output of file /public/javascripts/greeting.js : <br/>  
 		<%= javascript_include_tag "greeting" %>
