@@ -69,16 +69,15 @@ var tBuiltins2 = "";
 for (x in aBuiltins) {   
 	tBuiltins2 += aBuiltins[x] + " | "; 
 	};   
-var iTmp = Math.random() * 100;   
+var iTmp = Math.random() * 10;   
 var tTmp = new Date(); 
-     
-updateBuiltins(tBuiltins);   
+      
 updateBuiltins("The document is titled \"" + document.title + "\" and was last modified " + document.lastModified);  
 updateBuiltins("The browser has " + window.history.length + " items in its history.");  
 updateBuiltins("Let's point out that 'foo' is " + (isNaN("foo") ? "not " : "") + "a number.");
 updateBuiltins("... but " + iTmp + " is" + (isNaN(iTmp) ? " not ... " : " ... " )); 
 updateBuiltins("and if we round it to 2 decimals, it's " + iTmp.toFixed(2)); 
-updateBuiltins("To a precision of 3, it's " + iTmp.toPrecision(3));     
+updateBuiltins("To a precision of 1, it's " + iTmp.toPrecision(1));     
 updateBuiltins("Right now, it's " + tTmp.toTimeString() + ", " + tTmp.toDateString() ); 
 updateBuiltins("Today is the " + tTmp.getDay() + " day of the week."); 
 
@@ -88,7 +87,7 @@ updateBuiltins("Today is the " + tTmp.getDay() + " day of the week.");
 		};
                                                                   
 var msg = "foo"; 
-var level = 2; 
+var level = parseInt(iTmp.toPrecision(1));     //NB that toPrecision() returns a -string-. 
 
 switch(level) { 
 	case 1: 
@@ -104,10 +103,39 @@ switch(level) {
 	break; 
 	
 	default: 
-	msg="Level not 1, 2, or 3."; 
+	msg="Level is " + level; 
 	break; 
 }
 
-updateFlowControl(msg);     
+updateFlowControl(msg);  
+var bTest = '1' == 1;  
+var bTestStrict = '1' === 1;   
+updateFlowControl("'1' does " + (bTest ? "" : "not ") + "equal 1"); 
+updateFlowControl("'1' does " + (bTestStrict ? "" : "not ") + "strict-equal 1"); 
+updateFlowControl("The existence of an object is 'truthy' in that it operates as '" + (document.getElementById('flowcontrol') ? "true" : "false") + "'.");   
+updateFlowControl("However, this 'truthy' value does " + (document.getElementById('flowcontrol') == true ? "" : "not ") + "equal 'true'.")
+
+function fooLoop(max) { 
+	var output = ""; 
+	for (var i = 0; i < max; i++)   { 
+		output += (output.length ? ", " : "") + "foo";    //NB how we use the 'falsy' nature of 0 to check here. 
+		}  
+	return output; 
+	}   
+	          
+var loopMax = 5; 
+updateFlowControl("Output of a " + loopMax + "-count for loop : " + fooLoop(loopMax));  
+
+function barLoop(max) { 
+	var i = 0; 
+	var output = ""; 
+	while (i < max) { 
+		output += (output.length ? ", " : "") + "bar"; 
+		i++; 
+		}
+	return output; 
+}
+ 
+updateFlowControl("Output of a " + loopMax + "-count while loop : " + barLoop(loopMax));   
 
 document.write("<p>The script js_and_jq.js has been completed at this location.</p>");      
