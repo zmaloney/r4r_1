@@ -10,7 +10,8 @@ document.write("<p>Array \"colors\" has " + colors.length + " elements.");
 
 colors.forEach(printArrayElements);    
 */     
-//right, let's build some OBJECTS.  
+//right, let's build some OBJECTS.    
+
 function Hotel(name, rooms, booked) { 
 	this.name = name; 
 	this.rooms = rooms; 
@@ -18,9 +19,9 @@ function Hotel(name, rooms, booked) {
 	this.checkAvailability = function() { return this.rooms - this.booked; };   
 	this.phonesToText = function() { 
 		var sHotelPhones = ""; 
-		this.phones.forEach(function(phone, index, array) { //we don't use index or array, but note that it gets passed. 
-			sHotelPhones += (sHotelPhones.length > 0 ? ", " : "") + phone + " " + foo;  
-			});    
+		this.phones.forEach(function(phone) { //we don't use index or array, but note that it gets passed. 
+			sHotelPhones += (sHotelPhones.length > 0 ? ", " : "") + phone; 
+			});  
 		return sHotelPhones; 
 	};    
 	this.hotelInfo = function() {   
@@ -39,19 +40,15 @@ overlookHotel.phones = [
 var watergateHotel = new Hotel("Watergate", 155, 25);  
 watergateHotel.phones = [8001911881];  
 watergateHotel.pool = true; 
-
+ 
 function updateTextHolder(text) { 
 	var bd = document.getElementById('textholder');  
 	bd.innerHTML += text  + "<br/>"; 
-	}      
-	
-function updateBuiltins(text) { 
-	var bd = document.getElementById('builtins');  
-	bd.innerHTML += text  + "<br/>"; 
-	}   
+	};       
 
 updateTextHolder(overlookHotel.hotelInfo());      
 updateTextHolder(watergateHotel.hotelInfo());       
+
 
 function windowSize() { 
 	var width = this.innerWidth; 
@@ -60,7 +57,12 @@ function windowSize() {
 }      
    
 updateTextHolder("Window size is " + windowSize());       
-       
+
+	function updateBuiltins(text) { 
+		var bd = document.getElementById('builtins');  
+		bd.innerHTML += text  + "<br/>"; 
+		};
+
 var tBuiltins = "Builtins go here."  
 var aBuiltins = tBuiltins.split(' ');    
 var tBuiltins2 = ""; 
@@ -69,7 +71,7 @@ for (x in aBuiltins) {
 	};   
 var iTmp = Math.random() * 100;   
 var tTmp = new Date(); 
-
+     
 updateBuiltins(tBuiltins);   
 updateBuiltins("The document is titled \"" + document.title + "\" and was last modified " + document.lastModified);  
 updateBuiltins("The browser has " + window.history.length + " items in its history.");  
@@ -79,5 +81,33 @@ updateBuiltins("and if we round it to 2 decimals, it's " + iTmp.toFixed(2));
 updateBuiltins("To a precision of 3, it's " + iTmp.toPrecision(3));     
 updateBuiltins("Right now, it's " + tTmp.toTimeString() + ", " + tTmp.toDateString() ); 
 updateBuiltins("Today is the " + tTmp.getDay() + " day of the week."); 
+
+	function updateFlowControl(text) { 
+		var bd = document.getElementById('flowcontrol');  
+		bd.innerHTML += text  + "<br/>"; 
+		};
+                                                                  
+var msg = "foo"; 
+var level = 2; 
+
+switch(level) { 
+	case 1: 
+	msg="Hello, level one."; 
+	break; 
+	
+	case 2: 
+	msg="Hello, level twooooo."; 
+	break; 
+	
+	case 3: 
+	msg="Jello, level threeuuh."; 
+	break; 
+	
+	default: 
+	msg="Level not 1, 2, or 3."; 
+	break; 
+}
+
+updateFlowControl(msg);     
 
 document.write("<p>The script js_and_jq.js has been completed at this location.</p>");      
