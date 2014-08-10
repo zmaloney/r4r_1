@@ -45,23 +45,21 @@ function updateTextHolder(text) {
 	var bd = document.getElementById('textholder');  
 	bd.innerHTML += text  + "<br/>"; 
 	};       
-
-updateTextHolder(overlookHotel.hotelInfo());      
-updateTextHolder(watergateHotel.hotelInfo());       
-
-
+     
 function windowSize() { 
 	var width = this.innerWidth; 
 	var height = this.innerHeight; 
 	return height * width; 
-}      
-   
-updateTextHolder("Window size is " + windowSize());       
+}  
+	
+// updateTextHolder(overlookHotel.hotelInfo());      
+// updateTextHolder(watergateHotel.hotelInfo());       
+// updateTextHolder("Window size is " + windowSize());       
 
-	function updateBuiltins(text) { 
-		var bd = document.getElementById('builtins');  
-		bd.innerHTML += text  + "<br/>"; 
-		};
+function updateBuiltins(text) { 
+	var bd = document.getElementById('builtins');  
+	bd.innerHTML += text  + "<br/>"; 
+	}; 
 
 var tBuiltins = "Builtins go here."  
 var aBuiltins = tBuiltins.split(' ');    
@@ -81,10 +79,10 @@ updateBuiltins("To a precision of 1, it's " + iTmp.toPrecision(1));
 updateBuiltins("Right now, it's " + tTmp.toTimeString() + ", " + tTmp.toDateString() ); 
 updateBuiltins("Today is the " + tTmp.getDay() + " day of the week."); 
 
-	function updateFlowControl(text) { 
-		var bd = document.getElementById('flowcontrol');  
-		bd.innerHTML += text  + "<br/>"; 
-		};
+function updateFlowControl(text) { 
+	var bd = document.getElementById('flowcontrol');  
+	bd.innerHTML += text  + "<br/>"; 
+	};  
                                                                   
 var msg = "foo"; 
 var level = parseInt(iTmp.toPrecision(1));     //NB that toPrecision() returns a -string-. 
@@ -110,8 +108,7 @@ switch(level) {
 updateFlowControl(msg);  
 var bTest = '1' == 1;  
 var bTestStrict = '1' === 1;   
-updateFlowControl("'1' does " + (bTest ? "" : "not ") + "equal 1"); 
-updateFlowControl("'1' does " + (bTestStrict ? "" : "not ") + "strict-equal 1"); 
+updateFlowControl("'1' does " + (bTest ? "" : "not ") + "equal 1, but '1' does " + (bTestStrict ? "" : "not ") + "strict-equal 1"); 
 updateFlowControl("The existence of an object is 'truthy' in that it operates as '" + (document.getElementById('flowcontrol') ? "true" : "false") + "'.");   
 updateFlowControl("However, this 'truthy' value does " + (document.getElementById('flowcontrol') == true ? "" : "not ") + "equal 'true'.")
 
@@ -135,7 +132,18 @@ function barLoop(max) {
 		}
 	return output; 
 }
- 
-updateFlowControl("Output of a " + loopMax + "-count while loop : " + barLoop(loopMax));   
+       
+updateFlowControl("Output of a " + loopMax + "-count while loop : " + barLoop(loopMax));  
+
+function updateDomTree(text) { 
+	var bd = document.getElementById('domtree');  
+	bd.innerHTML += text  + "<br/>"; 
+	};  
+	
+updateDomTree("What happens when we write here?");   
+var itemOne = document.getElementById('one');    
+updateDomTree("We could " + (itemOne ? "" : "not ") + "locate an item with ID 'one'.");   
+var itemTwo = document.querySelector('li.hot');    
+updateDomTree("We could " + (itemTwo ? "" : "not ") + "locate at least one item with CSS 'li.hot'.");  
 
 document.write("<p>The script js_and_jq.js has been completed at this location.</p>");      
