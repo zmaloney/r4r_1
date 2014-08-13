@@ -177,14 +177,13 @@ function writeNodeInfo(obj, ignoreWhitespaceNodes) {
 	var myInfo = ""; 
 	var childInfo = "";    
 	if (ignoreWhitespaceNodes && (typeof obj.tagName == 'undefined')) { 
-		//do nothing
 	} 
 	else 
 	{   
 		var iWhitespaceChildren = 0; 
 		var iValidChildren = 0; 
 		myInfo += (nodeList.length > 0 ? "<ul>" : ""); 
-		myInfo += (obj.tagName) + " ID '" + (obj.id ? obj.id : "undefined") + "' : "; 
+		myInfo += (obj.tagName) + " ID '" + (obj.id ? obj.id : "undefined") + "', value '" + obj.nodeValue + "' : "; 
 		for (var i = 0; i < nodeList.length; i++) {  
 			if (typeof nodeList.item(i).tagName == 'undefined') { iWhitespaceChildren++ } else { iValidChildren++ };  
 			var nodeListInfo = writeNodeInfo(nodeList.item(i), ignoreWhitespaceNodes); 
@@ -202,5 +201,16 @@ updateDomInfo(shoppingdivinfo);
 setVisibility('flowcontrol', false); 
 setVisibility('domtree', false); 
 setVisibility('builtins', false); 
+      
+var itemOne = document.getElementById('one'); 
+var showTextContent = itemOne.textContent;
+var showInnerText = itemOne.innerText; //NB : not implemented in Firefox, so don't use.   
+itemOne.innerHTML = "<em id=\"foo\">Emphasized</em> items";  
+
+var shoppingul = document.getElementById('shoppingul'); 
+var newli = document.createElement('li'); 
+var newText = document.createTextNode("Stuffy stuff"); 
+newli.appendChild(newText); 
+shoppingul.appendChild(newli); //well, that works too. 
 
 document.write("<p>The script js_and_jq.js has been completed at this location.</p>");      
