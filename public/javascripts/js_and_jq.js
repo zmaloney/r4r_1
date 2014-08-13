@@ -7,9 +7,21 @@ function printArrayElements(element, index, array) {
 }       
       
 document.write("<p>Array \"colors\" has " + colors.length + " elements.");  
+  
+//See? These are equivalent, but only because we're operating on an -array-. 
+// Nodelists can't use array functions!
+colors.forEach(printArrayElements);
+colors.forEach(function(element, index, array) {
+	    document.write("<p>a[" + index + "] = " + element + " " + array.foo + "</p>");
+	});     
+                     
+*/ 
+ 
+function setVisibility(obj, visible) {     
+	var tObj = document.getElementById(obj); 
+	tObj.style.display = (visible ? '' : 'none'); 
+	}   
 
-colors.forEach(printArrayElements);    
-*/     
 //right, let's build some OBJECTS.    
 
 function Hotel(name, rooms, booked) { 
@@ -143,7 +155,52 @@ function updateDomTree(text) {
 updateDomTree("What happens when we write here?");   
 var itemOne = document.getElementById('one');    
 updateDomTree("We could " + (itemOne ? "" : "not ") + "locate an item with ID 'one'.");   
-var itemTwo = document.querySelector('li.hot');    
-updateDomTree("We could " + (itemTwo ? "" : "not ") + "locate at least one item with CSS 'li.hot'.");  
+var CSSCheck = 'li.hot'; 
+var itemTwo = document.querySelectorAll(CSSCheck);    
+updateDomTree("We could " + (itemTwo ? "" : "not ") + "locate at least one item with CSS '" + CSSCheck + "'.");  
+//This is obvious, but counterintuitive : notice that itemTwo evaluates as truthy even if it's an empty node list. 
+if (itemTwo) { updateDomTree("There are " + itemTwo.length + " elements with CSS '" + CSSCheck + "'.") }; 
+// EFFF!!!! ... we can't use array methods like forEach on a nodelist. That sucks. 
+for (var i = 0; i < itemTwo.length; i++) { 
+	itemTwo[i].className = 'mediumcool';  
+	}; 
+updateDomTree("We have successfully converted all 'hot' elements into 'mediumcool' elements.");   
+        
+function updateDomInfo(text) { 
+	var bd = document.getElementById('dominfo');  
+	bd.innerHTML += text  + "<br/>"; 
+	};
+        
+var shoppingdiv = document.getElementById('shoppingdiv');   
+function writeNodeInfo(obj, ignoreWhitespaceNodes) {   
+	var nodeList = obj.childNodes;  
+	var myInfo = ""; 
+	var childInfo = "";    
+	if (ignoreWhitespaceNodes && (typeof obj.tagName == 'undefined')) { 
+		//do nothing
+	} 
+	else 
+	{   
+		var iWhitespaceChildren = 0; 
+		var iValidChildren = 0; 
+		myInfo += (nodeList.length > 0 ? "<ul>" : ""); 
+		myInfo += (obj.tagName) + " ID '" + (obj.id ? obj.id : "undefined") + "' : "; 
+		for (var i = 0; i < nodeList.length; i++) {  
+			if (typeof nodeList.item(i).tagName == 'undefined') { iWhitespaceChildren++ } else { iValidChildren++ };  
+			var nodeListInfo = writeNodeInfo(nodeList.item(i), ignoreWhitespaceNodes); 
+			childInfo += (nodeListInfo.length > 0 ? "<li>" +  nodeListInfo + "</li>" : ""); 
+			};  
+		myInfo += iValidChildren + " valid child" + (iValidChildren == 1 ? "" : "ren") + ", " + iWhitespaceChildren + " whitespace child" + (iWhitespaceChildren == 1 ? "" : "ren") + "."; 
+		myInfo += childInfo; 
+		myInfo += (nodeList.length > 0 ? "</ul>" : "");  
+	}; 
+	return myInfo;   
+}  
+shoppingdivinfo = writeNodeInfo(shoppingdiv, true);    
+updateDomInfo(shoppingdivinfo);     
+
+setVisibility('flowcontrol', false); 
+setVisibility('domtree', false); 
+setVisibility('builtins', false); 
 
 document.write("<p>The script js_and_jq.js has been completed at this location.</p>");      
