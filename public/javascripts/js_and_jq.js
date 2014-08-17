@@ -207,10 +207,24 @@ var showTextContent = itemOne.textContent;
 var showInnerText = itemOne.innerText; //NB : not implemented in Firefox, so don't use.   
 itemOne.innerHTML = "<em id=\"foo\">Emphasized</em> items";  
 
-var shoppingul = document.getElementById('shoppingul'); 
-var newli = document.createElement('li'); 
-var newText = document.createTextNode("Stuffy stuff"); 
-newli.appendChild(newText); 
-shoppingul.appendChild(newli); //well, that works too. 
+var shoppingList = document.getElementsByTagName('ul')[0]; 
+
+var additionalItem = document.createElement('li'); 
+var additionalText = document.createTextNode('Fifthy stuff'); 
+additionalItem.appendChild(additionalText); 
+updateDomInfo('item \'shoppinglist\' has ' + shoppingList.childNodes.length + ' children before anything is added.'); 
+//NB that calling this next line more than once has no effect : 
+shoppingList.appendChild(additionalItem);   
+var bolDeep = true; 
+var anotherItem = additionalItem.cloneNode(bolDeep);   
+updateDomInfo("anotherItem has " + anotherItem.childNodes.length + " children, since we " + (bolDeep ? "did" : "did not") + " use the 'deep' parameter."); 
+var removeItem = anotherItem.childNodes[0]; 
+anotherItem.removeChild(removeItem);  
+var anotherText = document.createTextNode('Sixy six sixtyff');    
+updateDomInfo("anotherItem now has " + anotherItem.childNodes.length + " children after removal.");     
+anotherItem.appendChild(anotherText);  
+updateDomInfo("anotherItem now has " + anotherItem.childNodes.length + " children after additions."); 
+shoppingList.appendChild(anotherItem);  
+updateDomInfo('item \'shoppinglist\' has ' + shoppingList.childNodes.length + ' children after additions.');  
 
 document.write("<p>The script js_and_jq.js has been completed at this location.</p>");      

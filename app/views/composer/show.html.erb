@@ -1,6 +1,9 @@
 <h1><%= "#{@composer.first_name} #{@composer.last_name}" %></h1>
 
-<p>Works by this composer</p>
+<p>Works by this composer</p>  
+
+<!-- we could use the following line to output a <pre> tag with info about our 'composer' object : --> 
+<!-- <%= debug @composer %> --> 
 	<% @composer.works.each do |work| %>
 	<p>
 		<%= link_to work.title || "(no description)", 
