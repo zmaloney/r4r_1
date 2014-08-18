@@ -197,10 +197,6 @@ function writeNodeInfo(obj, ignoreWhitespaceNodes) {
 }  
 shoppingdivinfo = writeNodeInfo(shoppingdiv, true);    
 updateDomInfo(shoppingdivinfo);     
-
-setVisibility('flowcontrol', false); 
-setVisibility('domtree', false); 
-setVisibility('builtins', false); 
       
 var itemOne = document.getElementById('one'); 
 var showTextContent = itemOne.textContent;
@@ -225,6 +221,91 @@ updateDomInfo("anotherItem now has " + anotherItem.childNodes.length + " childre
 anotherItem.appendChild(anotherText);  
 updateDomInfo("anotherItem now has " + anotherItem.childNodes.length + " children after additions."); 
 shoppingList.appendChild(anotherItem);  
-updateDomInfo('item \'shoppinglist\' has ' + shoppingList.childNodes.length + ' children after additions.');  
+updateDomInfo('item \'shoppinglist\' has ' + shoppingList.childNodes.length + ' children after additions.');   
+                             
+// Here we start our section of event handlers. 
+// First, traditional DOM event handlers : 
+function checkUsernameDOMStyle() {                                      
+	var elMsg = document.getElementById('usernameFeedback');   
+	if (this.value.length < 5) {      
+//		alert("Username must be 5 characters or more.");  
+		elMsg.textContent = "Username must be 5 characters or more.";  
+		elMsg.style.display = ''; 
+	}
+	else { 
+		elMsg.textContent = ''; 
+		elMsg.style.display = 'none'; 
+	}
+}  
+
+var elUsername = document.getElementById('username'); 
+elUsername.onblur = checkUsernameDOMStyle; 
+    
+//and now, using an event listener.    
+var elUsername2 = document.getElementById('username2'); 
+    
+// so here's the deal -- see that 'event' parameter? 
+// We add an event listener via an anon function, which specifies a parameter e, 
+// which it passes to this function. 
+// That 'e' is the event which triggered the anon function. 
+// This is apparently the preferred way to do this (rather than, say, using a parameterless anon fn
+	// and passing the object to which the event listener is added to the inner fn).
+function checkUsernameListenerStyle(event, minLength) {                                   
+	var elMsg = document.getElementById('usernameFeedback2');    
+	if (event.target.value.length < minLength) {      
+		elMsg.textContent = "Username must be " + minLength + " characters or more.";  
+		elMsg.style.display = ''; 
+		//elMsg.style.color = colorName; 
+	}
+	else { 
+		elMsg.textContent = ''; 
+		elMsg.style.display = 'none';  
+		//elMsg.style.color = 'black'; 
+	}
+}     
+   
+//see how we're using an anonymous function to pass the extra string to the function?    
+// That's not really the important part -- this, generally, demonstrates the use of the addEventListener() method. 
+// NB that the target of the event must be explicitly passed to the inner function 
+// since that fn is being called by an anon fn. 
+elUsername2.addEventListener('blur', function(e) { 
+	checkUsernameListenerStyle(e, 8); 
+	}, false);                                                                        
+   
+// a little demo to show bubbling (in this case, from an input to the div it contains).
+// var elEventDiv = document.getElementById('eventobjects');    
+// elUsername2.addEventListener('click', showAlert, false); 
+// elEventDiv.addEventListener('click', showAlert, false);       
+   
+function showAlert(ev) {  
+	if (ev.preventDefault) { 
+		ev.preventDefault(); 
+	}
+	alert("Hey, you triggered the alert from " + this.id);  
+	ev.stopPropagation();
+	alert("Event propagation halted.");  
+}     
+  
+// and here is a little demo based on the same code as above that -stops- bubbling up. 
+// var elEventDiv = document.getElementById('eventobjects');    
+// elUsername2.addEventListener('click', showAlert, false); 
+// elEventDiv.addEventListener('click', showAlert, false);       
+
+// here also is a little demo that allows us to overwrite a default behavior
+var el404 = document.getElementById("a404");    
+if (el404.addEventListener) { 
+	el404.addEventListener('click', showAlert, false);       
+} 
+// or, using an anon function ... 
+// el404.addEventListener('click', function(event) { showAlert(event); }, false);   
+
+//just a little test of the UI events : 
+// window.addEventListener('load', function(e) { alert(e.target + " loaded!"); }, false); 
+
+//end of event handler section
+setVisibility('flowcontrol', false); 
+setVisibility('domtree', false); 
+setVisibility('builtins', false);
+setVisibility('dominfo', false);
 
 document.write("<p>The script js_and_jq.js has been completed at this location.</p>");      
