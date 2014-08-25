@@ -1,0 +1,31 @@
+// Place all the styles related to the formtest controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+              
+body.controller-formtest form { 
+	border: 2px solid #777777;  
+	padding-left: 10px;        
+	padding-right: 10px;
+	}    
+	
+body.controller-formtest input[type="submit"] {  
+	  border: 1px solid #777777;
+	  background: #6e9e2d;
+	  color: white;
+	  font: bold 11px 'Trebuchet MS';
+	  padding: 4px;
+	  cursor: pointer;
+	  -moz-border-radius: 4px;
+	  -webkit-border-radius: 4px;
+	}  
+	  
+body.controller-formtest label#lblGift {   
+	display:block;
+	clear:both;  
+	margin-top: 6px;   
+	margin-bottom: 6px;    
+}        
+
+body.controller-formtest .emphasis { 
+	color: red;  
+	}

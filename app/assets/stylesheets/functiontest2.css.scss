@@ -1,0 +1,22 @@
+// Place all the styles related to the functiontest2 controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+               
+//So this is an example of our "namespacing" CSS. 
+// See in application.html.erb how we set up the class of the body tag
+// based on the controller class.                                    
+body.controller-functiontest2 .positioninfo {
+	display: block;
+	width: 100px;  
+	background-color: #bfbfbf;   
+	clear:left; 
+}    
+
+body.controller-functiontest2 .positiondata {
+	width: 50px;  
+	background-color: #ffffff;  
+	margin-left: 10px;  
+	padding-left: 10px;
+	padding-right: 10px;  
+	margin-right: 10px;  
+}

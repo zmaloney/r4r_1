@@ -1,0 +1,21 @@
+<h1>Formtest#index</h1>
+<p>Here's the 'formtest' controller's 'index' method.</p>   
+<form id="testform">
+	<p>This is the first element in the form. This form is for testing form events. Form form form.</p>  
+	<label for="selectGift" id="lblGift">Select gift
+		<select id="selectGift">
+		  <option value="surprise">Surprise gift</option>
+		  <option value="mystery">Mystery gift</option>
+		  <option value="wrapped">Tightly wrapped gift</option>
+		  <option value="holes">Gift with holes in the box</option>
+		</select>  
+	</label>   
+	<div><span id="giftHint"></span></div>
+	<input type="submit" value="Next" />  
+	<div><span id="counter"></span></div>  
+	<br/>   
+	<input type="button" value="Add item" id="btnAddItem"/>
+<p>End of form.</p>         
+</form>
+<p>End of page rendering.</p>      
+<%= javascript_include_tag "formtest_js" %> 

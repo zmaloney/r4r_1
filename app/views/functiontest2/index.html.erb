@@ -1,0 +1,36 @@
+
+  <script>
+      $(function() {
+          $( "#datepicker" ).datepicker();
+      });
+  </script>           
+<p>A datepicker should show up directly under this line, as the input id is "datepicker": </p>
+<p>Date: <input type="text" id="datepicker"></p>  
+<p>Here is the host with port : <%= request.host_with_port()%></p>
+<fieldset id="javascript_test">  
+	<legend>Javascript tests</legend>      
+	<hr/>  
+	<div id="positiontests"> 
+		Here is a div with id 'positiontests'. 
+		<br clear="both" />
+		<label class="positioninfo" for="sx">SX<span id="sx" class="positiondata">sx</span></label>  
+		<label class="positioninfo" for="sy">SY<span id="sy" class="positiondata">sy</span></label>  
+	    <label class="positioninfo" for="px">PX<span id="px" class="positiondata">px</span></label>   
+		<label class="positioninfo" for="py">PY<span id="py" class="positiondata">py</span></label>   
+		<label class="positioninfo" for="cx">CX<span id="cx" class="positiondata">cx</span></label>   
+		<label class="positioninfo" for="cy">CY<span id="cy" class="positiondata">cy</span></label>    
+	</div>                     
+	<hr/>
+	<div id="keyeventtests"> 
+		Here is a div with id 'keyeventtests'.  
+		<textarea id='msgInput' cols='50' rows='8' style='display:block'></textarea>
+		<label for='charactersLeft' style='display:block'>Characters left : 
+			<span id='charactersLeft' />
+		</label>
+		<label for='lastKey' style='display:block'>Last key in ASCII : 
+			<span id='lastKey' />
+		</label>
+	</div>
+</fieldset>
+<p>This is the end of the page.</p>
+<%= javascript_include_tag "js_and_jq_2" %>     

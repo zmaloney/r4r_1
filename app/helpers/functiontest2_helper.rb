@@ -1,0 +1,2 @@
+module Functiontest2Helper
+end

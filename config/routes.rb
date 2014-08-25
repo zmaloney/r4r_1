@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'formtest/index'
+
   get 'composer/show'
 
   get 'edition/show'
@@ -16,7 +18,14 @@ Rails.application.routes.draw do
   
   #map the FunctionTest controller action "index" both to its normal path and to a function-less path. 
   get '/functiontest', to: 'function_test#index'       
-  get '/functiontest/index', to: 'function_test#index'
+  get '/functiontest/index', to: 'function_test#index'    
+  
+  #map the FunctionTest controller action "index" both to its normal path and to a function-less path. 
+  get 'functiontest2', to: 'functiontest2#index'       
+  get 'functiontest2/index', to: 'functiontest2#index'   
+  
+  # and the formtest controller : 
+  get 'formtest', to: 'formtest#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
