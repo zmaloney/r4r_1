@@ -81,5 +81,13 @@ function updateCount() {
 
 elSelect.addEventListener('change', packageHint, false);   
 elAddItem.addEventListener('click', addItem, false); 
+                                                        
+function setup() { 
+	var txtInput; 
+	txtInput = document.getElementById('txt2'); 
+	txtInput.focus(); 
+}
+
+window.addEventListener('DOMContentLoaded', setup, false); 
 
 document.write("Script file 'formtest_js' has completed running here."); 
